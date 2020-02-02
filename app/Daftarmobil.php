@@ -53,6 +53,7 @@ class Daftarmobil extends Model {
 
         $data = Daftarmobil::findOrFail($id);
         $data->update($request->all());
+        return $data;
     }
 
 

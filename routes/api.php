@@ -19,13 +19,11 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::get('/mobil','Admin\ApiDaftarmobilController@get_mobil');
 Route::get('/mobil/{brand}','Admin\ApiDaftarmobilController@get_mobil_brand');
+Route::get('/mobil/{id}/edit','Admin\ApiDaftarmobilController@edit_mobil');
+Route::put('/mobil/{id}/update','Admin\ApiDaftarmobilController@update_mobil');
 Route::get('/mobil/{brand}/{type}','Admin\ApiDaftarmobilController@get_mobil_brand_type');
+Route::post('/mobil/','Admin\ApiDaftarmobilController@tambah');
 Route::post('/mobil/{brand}/{type}','Admin\ApiDaftarmobilController@store');
 Route::patch('/mobil/{brand}/{type}','Admin\ApiDaftarmobilController@update');
 Route::delete('/mobil/{brand}/{type}','Admin\ApiDaftarmobilController@destroy');
-
-//Route::patch('/mobil/{brand}/{type}',function (){
-//    return response()->json(1,200);
-//});
-
-//Route::post('/coba','RfidController@index');
+Route::delete('/mobil/{id}/delete','Admin\ApiDaftarmobilController@hapus');

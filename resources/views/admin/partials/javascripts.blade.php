@@ -22,7 +22,7 @@
 
 
 
-<script src="//cdn.ckeditor.com/4.5.4/full/ckeditor.js"></script>
+{{--<script src="//cdn.ckeditor.com/4.5.4/full/ckeditor.js"></script>--}}
 {{--<script src="{{ url('quickadmin/js') }}/bootstrap.min.js"></script>--}}
 {{--<script src="{{ url('quickadmin/js') }}/main.js"></script>--}}
 
@@ -47,7 +47,7 @@
 
 {{--</script>--}}
 
-<script src="//cdn.tinymce.com/4/tinymce.min.js"></script>
+{{--<script src="//cdn.tinymce.com/4/tinymce.min.js"></script>--}}
 <script>
     var editor_config = {
         path_absolute : "/",

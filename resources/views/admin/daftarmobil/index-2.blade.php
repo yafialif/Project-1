@@ -16,11 +16,11 @@
             </div>
             <div class="card-block">
                 <div id="nestable-menu" class="m-b-10">
-                    {!! link_to_route(config('quickadmin.route').'.people.create', trans('quickadmin::templates.templates-view_index-add_new') , null, array('class' => 'btn btn-success')) !!}
+                    {!! link_to_route(config('quickadmin.route').'.daftarmobil.create', trans('quickadmin::templates.templates-view_index-add_new') , null, array('class' => 'btn btn-success')) !!}
                 </div>
 
 
-                    @if ($people->count())
+                    @if ($daftarmobil->count())
 
 
                         <div class="table-responsive dt-responsive">
@@ -31,43 +31,31 @@
                         <th>
                             {!! Form::checkbox('delete_all',1,false,['class' => 'mass']) !!}
                         </th>
-                        <th>parent</th>
-<th>Nama</th>
-<th>Foto</th>
-<th>Title</th>
-<th>Kepala Keluarga</th>
-<th>Alamat</th>
-<th>Longitude</th>
-<th>Latitude</th>
-<th>Tanggal Lahir</th>
-<th>Nmr Tlpn</th>
-<th>Jenis Kelamin</th>
+                        <th>Nomor Kerangka</th>
+<th>Nomor Polisi</th>
+<th>Merek</th>
+<th>Tipe</th>
+<th>Tahun</th>
 
                         <th>&nbsp;</th>
                     </tr>
                 </thead>
 
                 <tbody>
-                    @foreach ($people as $row)
+                    @foreach ($daftarmobil as $row)
                         <tr>
                             <td>
                                 {!! Form::checkbox('del-'.$row->id,1,false,['class' => 'single','data-id'=> $row->id]) !!}
                             </td>
-                            <td>{{ $row->pid }}</td>
-<td>{{ $row->nama }}</td>
-<td>@if($row->foto != '')<img src="{{ asset('uploads/thumb') . '/'.  $row->foto }}">@endif</td>
-<td>{{ $row->title }}</td>
-<td>{{ $row->kepala_keluarga }}</td>
-<td>{{ $row->alamat }}</td>
-<td>{{ $row->lng }}</td>
-<td>{{ $row->lat }}</td>
-<td>{{ $row->tgl_lahir }}</td>
-<td>{{ $row->tlpn }}</td>
-<td>{{ $row->jenis_kelamin }}</td>
+                            <td>{{ $row->no_kerangka }}</td>
+<td>{{ $row->no_polisi }}</td>
+<td>{{ $row->merek }}</td>
+<td>{{ $row->tipe }}</td>
+<td>{{ $row->tahun }}</td>
 
                             <td>
-                                {!! link_to_route(config('quickadmin.route').'.people.edit', trans('quickadmin::templates.templates-view_index-edit'), array($row->id), array('class' => 'btn btn-sm btn-info')) !!}
-                                {!! Form::open(array('style' => 'display: inline-block;', 'method' => 'DELETE', 'onsubmit' => "return confirm('".trans("quickadmin::templates.templates-view_index-are_you_sure")."');",  'route' => array(config('quickadmin.route').'.people.destroy', $row->id))) !!}
+                                {!! link_to_route(config('quickadmin.route').'.daftarmobil.edit', trans('quickadmin::templates.templates-view_index-edit'), array($row->id), array('class' => 'btn btn-sm btn-info')) !!}
+                                {!! Form::open(array('style' => 'display: inline-block;', 'method' => 'DELETE', 'onsubmit' => "return confirm('".trans("quickadmin::templates.templates-view_index-are_you_sure")."');",  'route' => array(config('quickadmin.route').'.daftarmobil.destroy', $row->id))) !!}
                                 {!! Form::submit(trans('quickadmin::templates.templates-view_index-delete'), array('class' => 'btn btn-sm btn-danger')) !!}
                                 {!! Form::close() !!}
                             </td>
@@ -82,7 +70,7 @@
                     </button>
                 </div>
             </div>
-            {!! Form::open(['route' => config('quickadmin.route').'.people.massDelete', 'method' => 'post', 'id' => 'massDelete']) !!}
+            {!! Form::open(['route' => config('quickadmin.route').'.daftarmobil.massDelete', 'method' => 'post', 'id' => 'massDelete']) !!}
                 <input type="hidden" id="send" name="toDelete">
             {!! Form::close() !!}
         </div>

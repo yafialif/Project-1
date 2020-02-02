@@ -24,8 +24,31 @@ class ApiDaftarmobilController extends Controller {
 
         $daftarmobil = $daftarmobil->get_data();
 
-		return response()->json($daftarmobil, 200);
+        $data = ([
+            'data'=>$daftarmobil
+        ]);
+
+		return response()->json($data, 200);
 	}
+
+
+    /**
+     * Edit of datamobil
+     *
+     * @return data Json
+     * @param $id
+     */
+    public function edit_mobil($id, Daftarmobil $daftarmobil)
+    {
+
+        $daftarmobil = $daftarmobil->get_data()->find($id);
+
+        $data = ([
+            'data'=>$daftarmobil
+        ]);
+
+        return response()->json($data, 200);
+    }
 
 
 
@@ -79,6 +102,21 @@ class ApiDaftarmobilController extends Controller {
 	    return response()->json($daftarmobil, 200);
 	}
 
+    /**
+     * Store a newly created daftarmobil in storage.
+     *
+     * @param CreateDaftarmobilRequest|Request $request
+     *
+     */
+    public function tambah(Request $request, Daftarmobil $daftarmobil)
+    {
+
+
+        $daftarmobil = $daftarmobil->add_data( $request);
+
+        return response()->json($daftarmobil, 200);
+    }
+
 	/**
 	 * Show the form for editing the specified daftarmobil.
 	 *
@@ -109,6 +147,20 @@ class ApiDaftarmobilController extends Controller {
 	}
 
 	/**
+	 * Update the specified daftarmobil in storage.
+     * @param UpdateDaftarmobilRequest|Request $request
+     *
+	 * @param  int  $id
+	 */
+	public function update_mobil($id, Request $request, Daftarmobil $daftarmobil)
+	{
+	    $daftarmobil = $daftarmobil->update_data($id, $request);
+
+	    return response()->json($daftarmobil, 200);
+
+	}
+
+	/**
 	 * Remove the specified daftarmobil from storage.
 	 *
 	 * @param  int  $id
@@ -120,6 +172,21 @@ class ApiDaftarmobilController extends Controller {
 	    return response()->json($daftarmobil, 200);
 
 	}
+
+    /**
+     * Remove the specified daftarmobil from storage.
+     *
+     * @param  int  $id
+     */
+    public function hapus($id, Daftarmobil $daftarmobil)
+    {
+        $daftarmobil->delete_data($id);
+
+        return response()->json($daftarmobil, 200);
+
+    }
+
+
 
 
 }
