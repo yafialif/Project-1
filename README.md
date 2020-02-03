@@ -30,7 +30,7 @@ Path: /api/
 |`/mobil/<BRAND>/<TYPE>`|Create|POST|Menambahkan mobil dengan merek BRAND dan tipe TYPE|
 |`/mobil/<BRAND>/<TYPE>`|Update|PUT/PATCH|Memperbaharui data mobil dengan merek BRAND dan tipe TYPE|
 |`/mobil/<BRAND>/<TYPE>`|Delete|DELETE| Menghapus mobil dengan merek BRAND dan tipe TYPE|
-|`/mobil/<id>/edit`|Read|GET|Mengambil data berdasarkan id|
+|`/data_mobil/<id>/edit`|Read|GET|Mengambil data berdasarkan id|
 |`/mobil/<id>/update`|Update|PUT/PATCH| Update Data berdasarkan id|
 |`/mobil`|Create|POST| Menambah data baru|
 |`/mobil/<id>/delete`|Delete|DELETE| Menghapus data berdasarkan id
