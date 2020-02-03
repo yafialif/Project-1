@@ -6,7 +6,7 @@ Untuk memulai program ikuti langkah langkah berikut ini
 
 1. Clone/Download Project Dari repository ini
 2. selanjutnya buat database baru, lalu lakukan konfigurasi koneksi database pada file `.env` 
-3. selanjutnya buka `comand line` atau `terminal` dan masuk pada posisi direktori project yang sudah di download tadi.
+3. setelah itu buka `comand line` atau `terminal` dan masuk pada posisi direktori project yang sudah di download tadi.
 4. lakukan perintah migrasi database dan sedding data melalui comand line dengan perintah berikut `php artisan migrate --seed`.
 
 ## Pengujian
@@ -14,5 +14,27 @@ Untuk memulai program ikuti langkah langkah berikut ini
 2. selanjutnya buka url tersebut pada web browser.
 3. untuk data admin username dan password sebagai berikut : 
 
-* Username 	 `admin@example.com`
+* Username 	 `admin@demo.com`
 * password 	 `password`
+
+## API
+
+Berikut adalah endpoint API yang ada Pada Program ini.
+Path: /api/
+
+| Endpoint        | Function| Method| Keterangan|
+| ------------- |:---------:| -----:|------:|
+| `/mobil  `    	| Read			| GET		|Menampilkan semua mobil yang ada|
+| `/mobil/<BRAND>` | Read     |   GET		| Menampilkan semua mobil dengan merek BRAND |
+| `/mobil/<BRAND>/<TYPE>` | Read      |    GET |Menampilkan data mobil dengan merek BRAND dan tipe TYPE|
+|`/mobil/<BRAND>/<TYPE>`|Create|POST|Menambahkan mobil dengan merek BRAND dan tipe TYPE|
+|`/mobil/<BRAND>/<TYPE>`|Update|PUT/PATCH|Memperbaharui data mobil dengan merek BRAND dan tipe TYPE|
+|`/mobil/<BRAND>/<TYPE>`|Delete|DELETE| Menghapus mobil dengan merek BRAND dan tipe TYPE|
+|`/mobil/<id>/edit`|Read|GET|Mengambil data berdasarkan id|
+|`/mobil/<id>/update`|Update|PUT/PATCH| Update Data berdasarkan id|
+|`/mobil`|Create|POST| Menambah data baru|
+|`/mobil/<id>/delete`|Delete|DELETE| Menghapus data berdasarkan id
+
+
+
+Terimakasih Banyak
