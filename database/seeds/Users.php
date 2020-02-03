@@ -9,15 +9,24 @@ class Users extends Seeder
     {
 
         Role::Insert([
-            'title' => 'Administrator',
+            'title' => 'Administrator'
         ]);
 
-    User::Insert([
+
+    User::Insert([[
         'role_id' => '1',
         'name' => 'Admin',
         'email' => 'admin@example.com',
         'password' => bcrypt('password'),
-    ]);
+
+    ],
+    [
+    'role_id' => '2',
+        'name' => 'User',
+        'email' => 'admin@demo.com',
+        'password' => bcrypt('password'),
+    ]]);
+
 
 
   }

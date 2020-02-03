@@ -1,9 +1,5 @@
 @extends('admin.layouts.master')
 @section('css')
-    <!-- Data Table Css -->
-    <link rel="stylesheet" type="text/css" href="{{ url('/') }}ablepro/bower_components/datatables.net-bs4/css/dataTables.bootstrap4.min.css">
-    <link rel="stylesheet" type="text/css" href="{{ url('/') }}ablepro/assets/pages/data-table/css/buttons.dataTables.min.css">
-    <link rel="stylesheet" type="text/css" href="{{ url('/') }}ablepro/bower_components/datatables.net-responsive-bs4/css/responsive.bootstrap4.min.css">
 
     <!-- Data Table Css -->
     <link rel="stylesheet" type="text/css" href="{{ asset('/ablepro/bower_components/datatables.net-bs4/css/dataTables.bootstrap4.min.css') }}">
@@ -14,7 +10,7 @@
 @endsection
 @section('content')
 
-<div class="col-sm-12">
+    <div class="col-sm-12">
         <!-- Nestable card start -->
         <div class="card">
             <div class="card-header">
@@ -75,49 +71,23 @@
                         </div>
                     </div>
                 </div>
-
-
-                    @if ($daftarmobil->count())
-
-
-                        <div class="table-responsive dt-responsive" id="data-tabel1">
-                        </div>
-
-
-            <div class="row">
-                <div class="col-xs-12">
-                    <button class="btn btn-sm btn-danger" id="delete">
-                        {{ trans('quickadmin::templates.templates-view_index-delete_checked') }}
-                    </button>
-                </div>
-            </div>
-            {!! Form::open(['route' => config('quickadmin.route').'.daftarmobil.massDelete', 'method' => 'post', 'id' => 'massDelete']) !!}
-                <input type="hidden" id="send" name="toDelete">
-            {!! Form::close() !!}
-        </div>
-	</div>
-@else
-    {{ trans('quickadmin::templates.templates-view_index-no_entries_found') }}
-@endif
- </div>
-
+                @if ($daftarmobil->count())
+                    <div class="table-responsive dt-responsive" id="data-tabel1">
+                    </div>
             </div>
         </div>
+        @else
+            {{ trans('quickadmin::templates.templates-view_index-no_entries_found') }}
+        @endif
+    </div>
+
+    </div>
+    </div>
     </div>
 @endsection
 
 @section('javascript')
-    <script type="text/javascript" src="{{ url('/') }}/ablepro/bower_components/jquery/js/jquery.min.js"></script>
-    <script type="text/javascript" src="{{ url('/') }}/ablepro/bower_components/jquery-ui/js/jquery-ui.min.js"></script>
-    <script type="text/javascript" src="{{ url('/') }}/ablepro/bower_components/popper.js/js/popper.min.js"></script>
-    <script type="text/javascript" src="{{ url('/') }}/ablepro/bower_components/bootstrap/js/bootstrap.min.js"></script>
-    <!-- waves js -->
-    <script src="{{ url('/') }}/ablepro/assets/pages/waves/js/waves.min.js"></script>
-    <!-- jquery slimscroll js -->
-    <script type="text/javascript" src="{{ url('/') }}/ablepro/bower_components/jquery-slimscroll/js/jquery.slimscroll.js"></script>
-    <!-- modernizr js -->
-    <script type="text/javascript" src="{{ url('/') }}/ablepro/bower_components/modernizr/js/modernizr.js"></script>
-    <script type="text/javascript" src="{{ url('/') }}/ablepro/bower_components/modernizr/js/css-scrollbars.js"></script>
+
     <!-- data-table js -->
     <script src="{{ url('/') }}/ablepro/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
     <script src="{{ url('/') }}/ablepro/bower_components/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
@@ -134,7 +104,6 @@
     <script src="{{ url('/') }}/ablepro/assets/js/pcoded.min.js"></script>
     <script src="{{ url('/') }}/ablepro/assets/js/vertical/vertical-layout.min.js"></script>
     <script src="{{ url('/') }}/ablepro/assets/js/jquery.mCustomScrollbar.concat.min.js"></script>
-    <script type="text/javascript" src="{{ url('/') }}/ablepro/assets/js/script.js"></script>
     <script >
         $( document ).ready(function () {
             tabeldata();
@@ -206,7 +175,7 @@
          * @param  int  $id
          */
 
-        function update_data(){
+        function update_data(id){
             var form = new FormData();
             form.append("no_kerangka", $('#no_kerangka').val());
             form.append("no_polisi", $('#no_polisi').val());
@@ -218,7 +187,7 @@
             var settings = {
                 "async": true,
                 "crossDomain": true,
-                "url": "http://localhost:8000/api/mobil/1/update",
+                "url": url+"/mobil/"+id+"/update",
                 "method": "POST",
                 "headers": {
                     "cache-control": "no-cache",
@@ -240,8 +209,10 @@
                 $('#tahun').val('');
             });
         }
-
-
+        /**
+         * Function Update data from list table.
+         *
+         */
 
         function tabeldata(){
             html = "<table id=\"dt-ajax-array2\" class=\"table table-striped table-bordered nowrap\">\n" +
@@ -297,9 +268,6 @@
                         "Postman-Token": "d974b5f2-09e8-4b74-8755-80dc7151b960"
                     }
                 }
-
-
-
                 $.ajax(settings).done(function (response) {
                     $('#no_kerangka').val(response.data.no_kerangka);
                     $('#no_polisi').val(response.data.no_polisi);
@@ -313,11 +281,10 @@
 
                 });
                 html = "<button type=\"button\" class=\"btn btn-default waves-effect \" data-dismiss=\"modal\">Close</button>\n" +
-                    "<button onclick='update_data()' type=\"button\" class=\"btn btn-primary waves-effect waves-light \">Save changes</button>";
+                    "<button onclick='update_data("+data.id+")' type=\"button\" class=\"btn btn-primary waves-effect waves-light \">Save changes</button>";
                 document.getElementById("button_submit").innerHTML = html;
                 $("#default-Modal").modal("show");
             });
-
 
             /**
              * Delete the specified datamobil from list table.

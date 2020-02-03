@@ -45,7 +45,7 @@
                         <ul class="show-notification profile-notification dropdown-menu" data-dropdown-in="fadeIn" data-dropdown-out="fadeOut">
                             <li>
                                 {!! Form::open(['url' => 'logout']) !!}
-                                <button type="submit" class="">
+                                <button type="submit" class="btn btn-block btn-danger btn-mini">
                                     <i class="fa fa-sign-out fa-fw"></i>
                                     <span class="title">{{ trans('quickadmin::admin.partials-sidebar-logout') }}</span>
                                 </button>
